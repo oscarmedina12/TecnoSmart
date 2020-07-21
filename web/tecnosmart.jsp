@@ -9,10 +9,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="css/Estilode_bar.css" rel="stylesheet" type="text/css"/>
         <title>TecnoSmart</title>
     </head>
     <body class="Body">
+   <div class="header">
+  <a href="#default" class="logo">TecnoSmart</a>
+  <div class="header-right">
+    <a class="active" href="tecnosmart.jsp">Inicio</a>
+    <a href="crudProductos.jsp">Ingresar Servicio</a>
+    <a  href="Listar.jsp">Ver servicios</a>
+      <a  href="Listar.jsp">salir ctm</a>
+  </div>
+</div>
     <center>
         <h1>Bienvenido
             <% if(session.getAttribute("usuario")!= null){
@@ -22,12 +31,7 @@
         <%}else{response.sendRedirect("index.jsp?msj=acceso denegado");}%>
        
        
-        <menu >
-                <a href="crudProductos.jsp"><input type="button" value="Ingresar un Servicio de Reparacion"/></a>
-                <br>
-                <br>
-                <a href="Listar.jsp"><input type="button" value="Ver los Servicio de Reparacion Registrados"/></a>
-        </menu>
+    
         <br>
         
         <% if(request.getParameter("msj")!= null){%>
