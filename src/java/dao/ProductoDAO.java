@@ -61,14 +61,14 @@ public class ProductoDAO extends Conexion {
             PreparedStatement ps = obtenerPS(sentencia);
             ps.setLong(1, codigo);
             ResultSet rs = ps.executeQuery();
-            Producto p = null;
+            Producto po = null;
             if(rs.next()){
                 Estado e = new Estado(rs.getInt("id"),rs.getString("e_nombre"));
-                p = new Producto(rs.getLong("codigo"),rs.getString("tipoProducto"),rs.getString("modeloProducto"),rs.getString("descripcionProblema"),
+                po = new Producto(rs.getLong("codigo"),rs.getString("tipoProducto"),rs.getString("modeloProducto"),rs.getString("descripcionProblema"),
                         rs.getInt("precio"),rs.getString("nombreCliente"),rs.getString("emailCliente"),rs.getString("rutCliente"),rs.getString("telefonoCliente"),e);
             }
             
-            return p;
+            return po;
         }catch(Exception e){
             return null;
         }finally{

@@ -13,6 +13,7 @@
         <title>TecnoSmart</title>
     </head>
     <body class="Body">
+<<<<<<< HEAD
    <div class="header">
   <a href="#default" class="logo">TecnoSmart</a>
   <div class="header-right">
@@ -22,16 +23,34 @@
       <a  href="Listar.jsp">salir ctm</a>
   </div>
 </div>
+=======
+        <br>
+        <form action="Salir" method="POST">
+        <div class="login col-lg-3">
+        <input class="btn btn-danger btn-block" type="submit" name="accion" value="Cerrar Sesión">
+        </div>
+    </form>
+        <br>
+>>>>>>> 5db799c42d0076beb1cc9dd6d24db55fb9056e71
     <center>
         <h1>Bienvenido
             <% if(session.getAttribute("usuario")!= null){
              Usuario u = (Usuario) session.getAttribute("usuario");
             %>
         <h3><%= u.getNombre()+" "+u.getApellido() %></h3>
-        <%}else{response.sendRedirect("index.jsp?msj=acceso denegado");}%>
+        <%}else{response.sendRedirect("index.jsp?msj=Acceso Denegado");}%>
        
        
+<<<<<<< HEAD
     
+=======
+        <menu >
+                <a href="IngresoServicio.jsp"><input type="button" value="Ingresar un Servicio de Reparacion"/></a>
+                <br>
+                <br>
+                <a href="Listar.jsp"><input type="button" value="Ver los Servicio de Reparacion Registrados"/></a>
+        </menu>
+>>>>>>> 5db799c42d0076beb1cc9dd6d24db55fb9056e71
         <br>
         
         <% if(request.getParameter("msj")!= null){%>

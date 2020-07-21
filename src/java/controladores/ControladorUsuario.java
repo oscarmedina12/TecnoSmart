@@ -42,10 +42,10 @@ public class ControladorUsuario extends HttpServlet {
         switch(accion){
             case "1": iniciarSesion(request,response);
                 break;
-            default: response.sendRedirect("index.jsp?msj=No te pases");
+            default: response.sendRedirect("index.jsp?msj=Acceso Denegado");
         }
         }else{
-            response.sendRedirect("index.jsp?msj=No te pases");
+            response.sendRedirect("index.jsp?msj=Acceso Denegado");
         }
     }
     

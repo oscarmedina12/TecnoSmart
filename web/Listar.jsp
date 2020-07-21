@@ -9,6 +9,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("usuario")==null){
+            response.sendRedirect("index.jsp?msj=Acceso Denegado");
+        }else{
+        Producto p = new Producto();
+        if(request.getParameter("codigo")!=null){
+         p = new ProductoDAO().obtenerProducto(Long.parseLong(request.getParameter("codigo")));
+                }
+            %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,9 +57,10 @@
                 <th>      </th>
             </tr>
             <% ArrayList<Producto> productos = new ProductoDAO().obtenerProductos();
-               for(Producto p: productos){               
+               for(Producto po: productos){               
                 %>
             <tr>
+<<<<<<< HEAD
                 <td><%= p.getCodigo() %></td>
                 <td><%= p.getTipoProducto() %></td>
                 <td><%= p.getModeloProducto() %></td>
@@ -64,6 +73,20 @@
                 <td><%= p.getEstado() %></td>
                 <td><a href="modificar.jsp?codigo=<%= p.getCodigo() %>">
                         <button class="btn info" type="button">Modificar</button>
+=======
+                <td><%= po.getCodigo() %></td>
+                <td><%= po.getTipoProducto() %></td>
+                <td><%= po.getModeloProducto() %></td>
+                <td><%= po.getDescripcionProblema() %></td>
+                <td><%= po.getPrecio() %></td>
+                <td><%= po.getNombreCliente() %></td>
+                <td><%= po.getEmailCliente() %></td>
+                <td><%= po.getRutCliente() %></td>
+                <td><%= po.getTelefonoCliente() %></td>
+                <td><%= po.getEstado() %></td>
+                <td><a href="modProducto.jsp?codigo=<%= po.getCodigo() %>">
+                        <button type="button">Modificar</button>
+>>>>>>> 5db799c42d0076beb1cc9dd6d24db55fb9056e71
                     </a></td>
             </tr>
             <% } %>
@@ -96,3 +119,4 @@ function myFunction() {
 </script>  
 </body>
 </html>
+<% } %>

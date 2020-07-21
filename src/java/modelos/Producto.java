@@ -22,6 +22,9 @@ public class Producto {
     private String telefonoCliente;
     private Estado estado;
 
+    public Producto() {
+    }
+    
     public Producto(long codigo, String tipoProducto, String modeloProducto, String descripcionProblema, int precio, String nombreCliente, String emailCliente, String rutCliente, String telefonoCliente, Estado estado) {
         this.codigo = codigo;
         this.tipoProducto = tipoProducto;
