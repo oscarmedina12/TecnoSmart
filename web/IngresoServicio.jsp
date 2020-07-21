@@ -1,9 +1,19 @@
 
+<%@page import="modelos.Producto"%>
+<%@page import="dao.ProductoDAO"%>
 <%@page import="dao.EstadoDAO"%>
 <%@page import="modelos.Estado"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("usuario")==null){
+            response.sendRedirect("index.jsp?msj=Acceso Denegado");
+        }else{
+        Producto p = new Producto();
+        if(request.getParameter("codigo")!=null){
+         p = new ProductoDAO().obtenerProducto(Long.parseLong(request.getParameter("codigo")));
+                }
+            %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -83,3 +93,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
+<% } %>

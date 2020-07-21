@@ -13,6 +13,13 @@
         <title>TecnoSmart</title>
     </head>
     <body class="Body">
+        <br>
+        <form action="Salir" method="POST">
+        <div class="login col-lg-3">
+        <input class="btn btn-danger btn-block" type="submit" name="accion" value="Cerrar Sesión">
+        </div>
+    </form>
+        <br>
     <center>
         <h1>Bienvenido
             <% if(session.getAttribute("usuario")!= null){

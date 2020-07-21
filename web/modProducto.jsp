@@ -4,8 +4,21 @@
     Author     : DellPC
 --%>
 
+<%@page import="dao.EstadoDAO"%>
+<%@page import="modelos.Estado"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.ProductoDAO"%>
+<%@page import="modelos.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("usuario")==null){
+            response.sendRedirect("index.jsp?msj=Acceso Denegado");
+        }else{
+        Producto p = new Producto();
+        if(request.getParameter("codigo")!=null){
+         p = new ProductoDAO().obtenerProducto(Long.parseLong(request.getParameter("codigo")));
+                }
+            %>
 <html>
 <html>
     <head>
@@ -22,53 +35,59 @@
             <table>
                 <tr>
                     <td>Codigo de Cliente</td>
-                    <td><input type="number" name="codigo" value=""/></td>
+                    <td><input type="number" name="codigo" value="<%= p.getCodigo() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Tipo de Producto</td>
-                    <td><input type="text" name="tipoProducto"/></td>
+                    <td><input type="text" name="tipoProducto" value="<%= p.getTipoProducto() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Modelo de Producto</td>
-                    <td><input type="text" name="modeloProducto"/></td>
+                    <td><input type="text" name="modeloProducto" value="<%= p.getModeloProducto() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Descripcion del Problema</td>
-                    <td><textarea cols="20" rows="5" name="descripcionProblema"></textarea></td>
+                    <td><textarea cols="20" rows="5" name="descripcionProblema" readonly="true">
+                        <%= p.getDescripcionProblema()%>
+                        </textarea></td>
                 </tr>
                 <tr>
                     <td>Precio</td>
-                    <td><input type="number" name="precio"/></td>
+                    <td><input type="number" name="precio" value="<%= p.getPrecio() %>"/></td>
                 </tr>
                 <tr>
                     <td>Nombre Cliente</td>
-                    <td><input type="text" name="nombreCliente"/></td>
+                    <td><input type="text" name="nombreCliente" value="<%= p.getNombreCliente() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Email Cliente</td>
-                    <td><input type="text" name="emailCliente"/></td>
+                    <td><input type="text" name="emailCliente" value="<%= p.getEmailCliente() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Rut Cliente</td>
-                    <td><input type="text" name="rutCliente"/></td>
+                    <td><input type="text" name="rutCliente" value="<%= p.getRutCliente() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Telefono Cliente</td>
-                    <td><input type="text" name="telefonoCliente"/></td>
+                    <td><input type="text" name="telefonoCliente" value="<%= p.getTelefonoCliente() %>" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Estado</td>
                     <td>
                         <select name="estado">
                             <option value="0">Seleccione</option>
-                            <option value="1">En Reparacion</option>
-                         
+                            <% ArrayList<Estado> estados = new EstadoDAO().obtenerEstados(); 
+                            for(Estado e:estados){%>
+                            <option value="<%= e.getId() %>" 
+                                  <% if(e.getId()== p.getEstado().getId()){ out.print("selected='selected'"); }%>  
+                                    ><%= e %></option>
+                            <% } %>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Modificar"/></td>
-                <input type="hidden" name="accion" value="1"/>
+                <input type="hidden" name="accion" value="2"/>
                 </tr>
             </table>
         </form>
@@ -82,3 +101,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
+<% } %>

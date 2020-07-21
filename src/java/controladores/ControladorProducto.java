@@ -38,10 +38,11 @@ public class ControladorProducto extends HttpServlet {
         String accion = request.getParameter("accion");
         switch(accion){
             case "1": registrar(request,response);
-                break;
+                 break;
+            case "2": modificar(request,response);
         }
          }else{
-             response.sendRedirect("crudProductos.jsp?msj=No te pases");
+             response.sendRedirect("crudProductos.jsp?msj=Acceso Denegado");
          }
     }
     
@@ -59,12 +60,11 @@ public class ControladorProducto extends HttpServlet {
             int estado = Integer.parseInt( request.getParameter("estado").trim());
             if(codigo<1||tipoProducto.equals("")||modeloProducto.equals("")||descripcionProblema.equals("")||precio<1||
                     nombreCliente.equals("")||emailCliente.equals("")||rutCliente.equals("")||telefonoCliente.equals("")||
-                    estado<1) // que hace aqui 
+                    estado<1)
             {
-                response.sendRedirect("crudProductos.jsp?msj=datos incorrectos");
+                response.sendRedirect("IngresoServicio.jsp?msj=datos incorrectos");
             }else{
                 EstadoDAO ed = new EstadoDAO();
-                //crea nueva variable, pregunta
                 Producto nuevoProducto = new Producto (codigo,tipoProducto,modeloProducto,descripcionProblema,
                         precio,nombreCliente,emailCliente,rutCliente,telefonoCliente,ed.obtenerEstado(estado));
                 
@@ -73,18 +73,55 @@ public class ControladorProducto extends HttpServlet {
                 if(pd.obtenerProducto(nuevoProducto.getCodigo())==null){
                     int respuesta = pd.registrar(nuevoProducto);
                     if(respuesta==1){
-                    response.sendRedirect("crudProductos.jsp?msj=Reparacion registrada");
+                    response.sendRedirect("IngresoServicio.jsp?msj=Reparacion registrada");
                     }else{
-                    response.sendRedirect("crudProductos.jsp?msj=La reparacion no se pudo ingresar"); // For input String: ""
+                    response.sendRedirect("IngresoServicio.jsp?msj=La reparacion no se pudo ingresar"); // For input String: ""
                     }
                 }else{
-                    response.sendRedirect("crudProductos.jsp?msj=El Codigo ya existe");
+                    response.sendRedirect("IngresoServicio.jsp?msj=El Codigo ya existe");
                 }
             }
            }catch(Exception e){
-               response.sendRedirect("crudProductos.jsp?msj="+e.getMessage());
+               response.sendRedirect("IngresoServicio.jsp?msj="+e.getMessage());
            }
         }
+    
+    private void modificar(HttpServletRequest request, HttpServletResponse response) throws IOException{
+         try{
+            long codigo =Long.parseLong(request.getParameter("codigo").trim());
+            String tipoProducto = request.getParameter("tipoProducto").trim();
+            String modeloProducto = request.getParameter("tipoProducto").trim();
+            String descripcionProblema = request.getParameter("descripcionProblema").trim();
+            int precio = Integer.parseInt(request.getParameter("precio").trim());
+            String nombreCliente = request.getParameter("nombreCliente").trim();
+            String emailCliente = request.getParameter("emailCliente").trim();
+            String rutCliente = request.getParameter("rutCliente").trim();
+            String telefonoCliente = request.getParameter("telefonoCliente").trim();
+            int estado = Integer.parseInt( request.getParameter("estado").trim());
+            if(codigo<1||tipoProducto.equals("")||modeloProducto.equals("")||descripcionProblema.equals("")||precio<1||
+                    nombreCliente.equals("")||emailCliente.equals("")||rutCliente.equals("")||telefonoCliente.equals("")||
+                    estado<1){
+                response.sendRedirect("modProducto.jsp?msj=valores erroneos");
+            }else{
+                EstadoDAO ed = new EstadoDAO();
+                Producto nuevoProducto = new Producto (codigo,tipoProducto,modeloProducto,descripcionProblema,
+                        precio,nombreCliente,emailCliente,rutCliente,telefonoCliente,ed.obtenerEstado(estado));
+                ProductoDAO pd = new ProductoDAO();
+                if(pd.obtenerProducto(nuevoProducto.getCodigo())==null){
+                    response.sendRedirect("modProducto.jsp?msj=Codigo de producto inexistente");
+                }else{
+                   int respuesta = pd.modificar(nuevoProducto);
+                   if(respuesta>0){
+                       response.sendRedirect("modProducto.jsp?msj=Estado de Reparacion modificada");
+                   }else{
+                       response.sendRedirect("modProducto.jsp?msj=El estado no se pudo modificar");
+                   }
+                }
+            }
+         }catch(Exception e){
+             
+         }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
