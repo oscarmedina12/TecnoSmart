@@ -1,6 +1,6 @@
 <%-- 
-    Document   : modificar
-    Created on : 15-jul-2020, 0:57:28
+    Document   : modProducto
+    Created on : 20-jul-2020, 20:54:14
     Author     : DellPC
 --%>
 
@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
-        <title>TecnoSmart</title>
+        <title>Modifica Reparacion</title>
     </head>
     <body class="Body">
     <center>

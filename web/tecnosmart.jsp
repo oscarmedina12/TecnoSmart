@@ -23,7 +23,7 @@
        
        
         <menu >
-                <a href="crudProductos.jsp"><input type="button" value="Ingresar un Servicio de Reparacion"/></a>
+                <a href="IngresoServicio.jsp"><input type="button" value="Ingresar un Servicio de Reparacion"/></a>
                 <br>
                 <br>
                 <a href="Listar.jsp"><input type="button" value="Ver los Servicio de Reparacion Registrados"/></a>
