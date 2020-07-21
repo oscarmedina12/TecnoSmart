@@ -9,7 +9,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<% if(session.getAttribute("usuario")==null){
+            response.sendRedirect("index.jsp?msj=Acceso Denegado");
+        }else{
+        Producto p = new Producto();
+        if(request.getParameter("codigo")!=null){
+         p = new ProductoDAO().obtenerProducto(Long.parseLong(request.getParameter("codigo")));
+                }
+            %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,20 +46,20 @@
                 <td>Estado</td>
             </tr>
             <% ArrayList<Producto> productos = new ProductoDAO().obtenerProductos();
-               for(Producto p: productos){               
+               for(Producto po: productos){               
                 %>
             <tr>
-                <td><%= p.getCodigo() %></td>
-                <td><%= p.getTipoProducto() %></td>
-                <td><%= p.getModeloProducto() %></td>
-                <td><%= p.getDescripcionProblema() %></td>
-                <td><%= p.getPrecio() %></td>
-                <td><%= p.getNombreCliente() %></td>
-                <td><%= p.getEmailCliente() %></td>
-                <td><%= p.getRutCliente() %></td>
-                <td><%= p.getTelefonoCliente() %></td>
-                <td><%= p.getEstado() %></td>
-                <td><a href="modProducto.jsp?codigo=<%= p.getCodigo() %>">
+                <td><%= po.getCodigo() %></td>
+                <td><%= po.getTipoProducto() %></td>
+                <td><%= po.getModeloProducto() %></td>
+                <td><%= po.getDescripcionProblema() %></td>
+                <td><%= po.getPrecio() %></td>
+                <td><%= po.getNombreCliente() %></td>
+                <td><%= po.getEmailCliente() %></td>
+                <td><%= po.getRutCliente() %></td>
+                <td><%= po.getTelefonoCliente() %></td>
+                <td><%= po.getEstado() %></td>
+                <td><a href="modProducto.jsp?codigo=<%= po.getCodigo() %>">
                         <button type="button">Modificar</button>
                     </a></td>
             </tr>
@@ -66,3 +73,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
+<% } %>

@@ -26,7 +26,7 @@
              Usuario u = (Usuario) session.getAttribute("usuario");
             %>
         <h3><%= u.getNombre()+" "+u.getApellido() %></h3>
-        <%}else{response.sendRedirect("index.jsp?msj=acceso denegado");}%>
+        <%}else{response.sendRedirect("index.jsp?msj=Acceso Denegado");}%>
        
        
         <menu >
