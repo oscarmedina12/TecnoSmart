@@ -18,7 +18,7 @@
   <a href="#default" class="logo">TecnoSmart</a>
   <div class="header-right">
     <a class="active" href="tecnosmart.jsp">Inicio</a>
-    <a href="crudProductos.jsp">Ingresar Servicio</a>
+    <a href="IngresoServicio.jsp">Ingresar Servicio</a>
     <a  href="Listar.jsp">Ver servicios</a>
       <a  href="Listar.jsp">salir ctm</a>
   </div>
@@ -41,16 +41,7 @@
         <%}else{response.sendRedirect("index.jsp?msj=Acceso Denegado");}%>
        
        
-<<<<<<< HEAD
-    
-=======
-        <menu >
-                <a href="IngresoServicio.jsp"><input type="button" value="Ingresar un Servicio de Reparacion"/></a>
-                <br>
-                <br>
-                <a href="Listar.jsp"><input type="button" value="Ver los Servicio de Reparacion Registrados"/></a>
-        </menu>
->>>>>>> 5db799c42d0076beb1cc9dd6d24db55fb9056e71
+
         <br>
         
         <% if(request.getParameter("msj")!= null){%>
